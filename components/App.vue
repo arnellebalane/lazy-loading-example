@@ -16,3 +16,21 @@
         }
     };
 </script>
+
+<style scoped>
+    #app {
+        padding: 50px;
+        text-align: center;
+    }
+
+    h1 {
+        margin-bottom: 50px;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .photos-list {
+        width: 400px;
+        margin: 0 auto;
+    }
+</style>

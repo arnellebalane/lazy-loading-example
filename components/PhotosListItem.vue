@@ -19,7 +19,14 @@
 
 <style scoped>
     .photos-list-item {
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 3px;
         position: relative;
+        background-color: #fff;
+        box-shadow:
+            0 15px 35px rgba(50, 50, 50, 0.1),
+            0 5px 15px rgba(0, 0, 0, 0.05);
     }
 
     img {
