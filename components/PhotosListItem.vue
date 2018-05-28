@@ -1,6 +1,10 @@
 <template>
     <div class="photos-list-item">
-        <img :src="data.placeholder" alt="Photo Item" class="placeholder">
+        <img :src="data.placeholder" alt="Placeholder Photo" class="placeholder">
+
+        <transition name="fade">
+            <img v-if="isLoaded" :src="data.url" alt="Actual Photo" class="actual">
+        </transition>
     </div>
 </template>
 
@@ -13,6 +17,19 @@
                 type: Object,
                 required: true
             }
+        },
+
+        data() {
+            return {
+                isLoaded: false
+            };
+        },
+
+        mounted() {
+            const image = new Image();
+            image.src = this.data.url;
+
+            image.onload = () => this.isLoaded = true;
         }
     };
 </script>
@@ -32,5 +49,27 @@
     img {
         display: block;
         width: 100%;
+    }
+
+    img.actual {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        width: calc(100% - 16px);
+        max-height: calc(100% - 16px);
+    }
+
+    /** Transition classes **/
+
+    .fade-enter-active {
+        transition: opacity 1s linear;
+    }
+
+    .fade-enter {
+        opacity: 0;
+    }
+
+    .fade-enter-to {
+        opacity: 1;
     }
 </style>
