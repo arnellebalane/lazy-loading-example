@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import photos from './api/photos';
 
 Vue.use(Vuex);
 
@@ -14,8 +15,10 @@ const mutations = {
 };
 
 const actions = {
-    fetchPhotos() {
-        // TODO
+    fetchPhotos({ commit }) {
+        photos.all().then(photos => {
+            commit('setPhotos', photos);
+        });
     }
 };
 
