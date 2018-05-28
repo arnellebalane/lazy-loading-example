@@ -25,11 +25,34 @@
             };
         },
 
-        mounted() {
-            const image = new Image();
-            image.src = this.data.url;
+        async mounted() {
+            await this.loadPlaceholder();
 
-            image.onload = () => this.isLoaded = true;
+            const options = { threshold: 0.25 };
+
+            const observer = new IntersectionObserver(([entry]) => {
+                if (entry.intersectionRatio >= options.threshold) {
+                    const image = new Image();
+                    image.src = this.data.url;
+
+                    image.onload = () => this.isLoaded = true;
+
+                    observer.unobserve(this.$el);
+                }
+            }, options);
+
+            observer.observe(this.$el);
+        },
+
+        methods: {
+            loadPlaceholder() {
+                return new Promise(resolve => {
+                    const image = new Image();
+                    image.src = this.data.placeholder;
+
+                    image.onload = resolve;
+                });
+            }
         }
     };
 </script>
