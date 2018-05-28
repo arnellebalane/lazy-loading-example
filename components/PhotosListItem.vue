@@ -1,6 +1,6 @@
 <template>
     <div class="photos-list-item">
-        <img :src="data.placeholder" alt="Placeholder Photo" class="placeholder">
+        <img ref="placeholder" :src="data.placeholder" alt="Placeholder Photo" class="placeholder">
 
         <transition name="fade">
             <img v-if="isLoaded" :src="data.url" alt="Actual Photo" class="actual">
@@ -26,33 +26,22 @@
         },
 
         async mounted() {
-            await this.loadPlaceholder();
+            this.$refs.placeholder.onload = () => {
+                const options = { threshold: 0.25 };
 
-            const options = { threshold: 0.25 };
+                const observer = new IntersectionObserver(([entry]) => {
+                    if (entry.intersectionRatio >= options.threshold) {
+                        const image = new Image();
+                        image.src = this.data.url;
 
-            const observer = new IntersectionObserver(([entry]) => {
-                if (entry.intersectionRatio >= options.threshold) {
-                    const image = new Image();
-                    image.src = this.data.url;
+                        image.onload = () => this.isLoaded = true;
 
-                    image.onload = () => this.isLoaded = true;
+                        observer.unobserve(this.$el);
+                    }
+                }, options);
 
-                    observer.unobserve(this.$el);
-                }
-            }, options);
-
-            observer.observe(this.$el);
-        },
-
-        methods: {
-            loadPlaceholder() {
-                return new Promise(resolve => {
-                    const image = new Image();
-                    image.src = this.data.placeholder;
-
-                    image.onload = resolve;
-                });
-            }
+                observer.observe(this.$el);
+            };
         }
     };
 </script>
