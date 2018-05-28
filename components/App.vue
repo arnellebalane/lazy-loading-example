@@ -1,6 +1,10 @@
 <template>
     <div id="app">
-        <h1>Lazy Loading Example</h1>
+        <header>
+            <h1>Lazy Loading Example</h1>
+            <a href="https://github.com/arnellebalane/lazy-loading-example" rel="noopener noreferrer" target="_blank">github.com/arnellebalane/lazy-loading-example</a>
+        </header>
+
         <PhotosList />
     </div>
 </template>
@@ -23,10 +27,18 @@
         text-align: center;
     }
 
-    h1 {
+    header {
         margin-bottom: 50px;
+    }
+
+    h1 {
+        margin-bottom: 8px;
         font-size: 16px;
         font-weight: 600;
+    }
+
+    a {
+        font-size: 12px;
     }
 
     .photos-list {
