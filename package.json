@@ -13,5 +13,9 @@
   "license": "MIT",
   "devDependencies": {
     "parcel-bundler": "1.8.1"
+  },
+  "dependencies": {
+    "vue": "2.5.16",
+    "vuex": "3.0.1"
   }
 }
