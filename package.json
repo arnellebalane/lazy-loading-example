@@ -1,0 +1,17 @@
+{
+  "name": "lazy-loading-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf build",
+    "start": "parcel index.html --out-dir build --port 5000",
+    "build": "parcel build index.html --out-dir build"
+  },
+  "keywords": [],
+  "author": "Arnelle Balane <arnellebalane@gmail.com> (https://arnellebalane.com/)",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel-bundler": "1.8.1"
+  }
+}
