@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "rm -rf build",
+    "clean": "rm -rf build .cache",
     "start": "parcel index.html --out-dir build --port 5000",
     "build": "parcel build index.html --out-dir build"
   },
